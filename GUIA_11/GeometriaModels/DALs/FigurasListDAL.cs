@@ -7,7 +7,7 @@ using GeometriaModels.Models;
 
 namespace GeometriaModels.DALs;
 
-public class FiguraListDAL:IFiguraDAL
+public class FigurasListDAL:IFigurasDAL
 {
     List<FiguraModel> figuras = new();
     int Id = 1;
@@ -21,7 +21,7 @@ public class FiguraListDAL:IFiguraDAL
         return figura;
     }
 
-    public List<FiguraModel> GetALL()
+    public List<FiguraModel> GetAll()
     {
         return figuras;
     }
@@ -34,16 +34,25 @@ public class FiguraListDAL:IFiguraDAL
         return figuras.Where(p => p.Id == id).FirstOrDefault();
     }
 
-    public bool Remove(int id)
+    public void Remove(int id)
     {
-        throw new NotImplementedException();
+        var figura = GetById(id);
+        if (figura != null)
+        {
+            figuras.Remove(figura);
+        }
     }
 
 
     public FiguraModel Update(FiguraModel entity)
     {
-        throw new NotImplementedException();
+        entity.Id = GenId();
+        figuras.Add(entity);
+        return entity;
     }
-
+    protected int? GenId()
+    {
+        return (from f in figuras select f.Id).DefaultIfEmpty(0).Max() + 1;
+    }
 
 }
