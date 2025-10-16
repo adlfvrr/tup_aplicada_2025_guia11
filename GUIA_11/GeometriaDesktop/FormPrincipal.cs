@@ -113,6 +113,7 @@ namespace GeometriaDesktop
 
         private void btnActualizarListado_Click(object sender, EventArgs e)
         {
+            lvwFiguras.Items.Clear();
             List<FiguraModel> lista = _figurasService.GetAll();
             foreach (FiguraModel f in lista)
             {

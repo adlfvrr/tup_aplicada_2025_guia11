@@ -1,6 +1,4 @@
-﻿
-
-namespace GeometriaModels.Models;
+﻿namespace GeometriaModels.Models;
 abstract public class FiguraModel
 {
     public int? Id { get; set; }
